@@ -1,0 +1,11 @@
+# Global gitignore
+
+# Files
+*.gz
+*.7z
+.env
+
+# Folders
+.vscode/
+build/
+

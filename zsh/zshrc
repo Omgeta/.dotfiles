@@ -1,0 +1,68 @@
+##      ##
+# Prompt #
+##      ##
+
+if [ -f $DOTFILES/zsh/prompt.zsh ]; then
+	source $DOTFILES/zsh/prompt.zsh
+fi
+
+##       ##
+# Aliases #
+##       ##
+
+alias ls="ls --color=auto --group-directories-first"
+alias ll="ls -lAhF"
+alias lls="ls -lAhFtr"
+alias la="ls -A"
+alias lc="ls -CF"
+
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -iv"
+
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+alias cls="clear"
+alias vim="nvim"
+alias vi="nvim"
+alias py="python3"
+alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
+
+##       ##
+# Options #
+##       ##
+
+setopt AUTO_CD			# Go to the folder path without using cd
+setopt CORRECT			# Spelling correction
+setopt CDABLE_VARS		# Change directory to a path stored in a variable
+setopt EXTENDED_GLOB		# Use extended globbing syntax
+
+setopt EXTENDED_HISTORY		# Write the history file in the ':start:elapsed;command' format
+setopt SHARE_HISTORY		# Share history between sessions
+setopt HIST_IGNORE_DUPS		# Do not record events in succession if they are the same
+setopt HIST_IGNORE_SPACE	# Do not record events if they start with a space
+setopt INC_APPEND_HISTORY	# Append history lists to the history file instead of replacing 
+
+##          ##
+# Completion #
+##          ##
+
+if [ -f $DOTFILES/zsh/completion.zsh ]; then
+	source $DOTFILES/zsh/completion.zsh
+fi
+
+##       ##
+# Plugins #
+##       ##
+
+add_plugin() {
+	local path="$DOTFILES/zsh/plugins/$1"
+	[ -f $path ] && source $path
+}
+
+add_plugin bd.zsh
+add_plugin cursor_mode.zsh
+add_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

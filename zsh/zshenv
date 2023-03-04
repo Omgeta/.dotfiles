@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+
+##                     ##
+# Environment Variables #
+##                     ##
+
+export TERM="xterm-256color"
+export DOTFILES="$HOME/.dotfiles"
+
+# XDG
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+
+# Editor
+export EDITOR="nvim"
+export GIT_EDITOR=$EDITOR
+export VISUAL="nvim"
+export READER="zathura"
+export SHELL="/usr/bin/zsh"
+
+# Zsh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export HISTFILE="$ZDOTDIR/.zhistory"
+export HISTSIZE=1000
+export SAVEHIST=$HISTSIZE
+[ -f "$DOTFILES/lscolors.sh" ] && source "$DOTFILES/lscolors.sh" # export LS_COLORS
+
+# Others
+export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+
+# Man pages
+export MANPAGER="nvim +Man!"
+
+# Python
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
+export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+
+# Go
+export GOPATH="$XDG_DATA_HOME/go"
+export GOBIN="$GOPATH/bin"
+export GOCACHE="$XDG_CACHE_HOME/go-build"
+
+# Rust
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+[ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+
+# NVM
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" && nvm use --lts --silent # This loads nvm
+
+# PATH
+#export PATH="$NPM_BIN:$PATH"
