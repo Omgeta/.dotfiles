@@ -63,6 +63,4 @@ add_plugin() {
 }
 
 add_plugin bd.zsh
-add_plugin cursor_mode.zsh
 add_plugin zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
