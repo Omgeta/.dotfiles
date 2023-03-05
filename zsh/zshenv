@@ -53,12 +53,3 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 
 # PATH
 #export PATH="$NPM_BIN:$PATH"
-
-# windows
-# manually add windows files to path after turning off interop to speed up zsh-syntax-highlighting being slow on wsl2
-export PATH="$PATH:/mnt/c/%LocalAppData%/Microsoft/WindowsApps"
-export PATH="$PATH:/mnt/c/%LocalAppData%/Programs/Microsoft VS Code/bin"
-export PATH="$PATH:/mnt/c/Program Files/Docker/Docker/resources/bin"
-export PATH="$PATH:/mnt/c/ProgramData/DockerDesktop/version-bin"
-export PATH="$PATH:/mnt/c/WINDOWS"
-
