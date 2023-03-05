@@ -211,12 +211,10 @@ return {
 			},
 		},
 		config = function(_, opts)
-			local pass, barbar = pcall(require, "barbar")
+			local pass, barbar = pcall(require, "bufferline")
 			if not pass then
 				return
 			end
-
-			barbar.setup(opts)
 
 			-- Offset
 			local nvim_tree_events = require("nvim-tree.events")
@@ -227,16 +225,18 @@ return {
 			end
 
 			nvim_tree_events.subscribe("TreeOpen", function()
-				bufferline_api.set_offset(get_tree_size())
+				bufferline_api.set_offset(get_tree_size() + 1)
 			end)
 
 			nvim_tree_events.subscribe("Resize", function()
-				bufferline_api.set_offset(get_tree_size())
+				bufferline_api.set_offset(get_tree_size() + 1)
 			end)
 
 			nvim_tree_events.subscribe("TreeClose", function()
 				bufferline_api.set_offset(0)
 			end)
+
+			barbar.setup(opts)
 		end,
 	},
 

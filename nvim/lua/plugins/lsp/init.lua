@@ -17,6 +17,7 @@ return {
 			autoformat = true, -- format on save
 			servers = {
 				"lua_ls",
+				"tsserver",
 			}, -- list of servers
 		},
 		config = function(_, opts)

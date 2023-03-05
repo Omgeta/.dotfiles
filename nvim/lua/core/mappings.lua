@@ -1,6 +1,6 @@
 -- Files
 vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w!<cr>", { desc = "Save File" })
-vim.keymap.set({ "n", "v" }, "<leader>e", "<cmd>bd<cr>", { desc = "Close Buffer" })
+vim.keymap.set({ "n", "v" }, "<leader>bd", "<cmd>bd<cr>", { desc = "Close" })
 vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>q!<cr>", { desc = "Exit Editor" })
 
 -- Keep cursor in middle

@@ -5,7 +5,7 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		keys = {
-			{ "<leader>t", "<cmd>NvimTreeToggle<cr>", desc = "Explorer Toggle" },
+			{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer Toggle" },
 			{ "<leader>o", "<cmd>NvimTreeFocus<cr>", desc = "Explorer Focus" },
 		},
 		opts = {
