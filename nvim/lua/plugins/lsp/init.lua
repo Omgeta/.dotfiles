@@ -18,6 +18,7 @@ return {
 			servers = {
 				"lua_ls",
 				"tsserver",
+				"eslint",
 			}, -- list of servers
 		},
 		config = function(_, opts)
@@ -85,13 +86,6 @@ return {
 			}
 		end,
 	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		cmd = { "NullInstall", "NullUninstall" },
-		opts = {
-			automatic_installation = true,
-		},
-	},
 
 	-- Install
 	{
@@ -107,6 +101,13 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		cmd = { "LspInstall", "LspUninstall" },
+		opts = {
+			automatic_installation = true,
+		},
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		cmd = { "NullInstall", "NullUninstall" },
 		opts = {
 			automatic_installation = true,
 		},
