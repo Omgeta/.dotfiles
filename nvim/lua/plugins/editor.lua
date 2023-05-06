@@ -13,7 +13,6 @@ return {
 				dotfiles = false,
 			},
 			hijack_cursor = true,
-			hijack_unnamed_buffer_when_opening = false,
 			update_cwd = true,
 			update_focused_file = {
 				enable = true,
@@ -23,7 +22,6 @@ return {
 				adaptive_size = true,
 				side = "left",
 				width = 25,
-				hide_root_folder = true,
 			},
 			filesystem_watchers = {
 				enable = true,
@@ -34,6 +32,9 @@ return {
 			renderer = {
 				group_empty = true,
 				highlight_opened_files = "name",
+				root_folder_label = function(path)
+					return vim.fn.fnamemodify(path, ":t")
+				end,
 			},
 		},
 	},
@@ -226,5 +227,10 @@ return {
 				history = 100,
 			}
 		end,
+	},
+
+	-- Tmux Navigation
+	{
+		"christoomey/vim-tmux-navigator",
 	},
 }

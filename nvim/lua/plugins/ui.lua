@@ -203,11 +203,13 @@ return {
 			{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close" },
 		},
 		opts = {
-			diagnostics = {
-				[vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostics.Error },
-				[vim.diagnostic.severity.WARN] = { enabled = true, icon = icons.diagnostics.Warn },
-				[vim.diagnostic.severity.INFO] = { enabled = false, icon = icons.diagnostics.Info },
-				[vim.diagnostic.severity.HINT] = { enabled = false, icon = icons.diagnostics.Hint },
+			icons = {
+				diagnostics = {
+					[vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostics.Error },
+					[vim.diagnostic.severity.WARN] = { enabled = true, icon = icons.diagnostics.Warn },
+					[vim.diagnostic.severity.INFO] = { enabled = false, icon = icons.diagnostics.Info },
+					[vim.diagnostic.severity.HINT] = { enabled = false, icon = icons.diagnostics.Hint },
+				},
 			},
 		},
 		config = function(_, opts)

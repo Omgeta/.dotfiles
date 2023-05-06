@@ -42,10 +42,10 @@ g.mapleader = " "
 g.maplocalleader = ";"
 
 -- Tab settings
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
-opt.expandtab = false
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.expandtab = true
 opt.ai = true -- Auto-indent
 opt.si = true -- Smart-indent
 

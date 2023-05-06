@@ -75,6 +75,8 @@ return {
 				BufferInactiveIndex = { fg = colors.grey, bg = colors.bg0 },
 				BufferInactiveSign = { fg = colors.bg0, bg = colors.bg0 },
 				BufferInactiveTarget = { fg = colors.grey, bg = colors.bg0 },
+				BufferInactiveERROR = { bg = colors.bg0 },
+				BufferInactiveWARN = { bg = colors.bg0 },
 
 				BufferTabpageFill = { fg = colors.bg_d, bg = colors.bg_d },
 
