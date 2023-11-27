@@ -6,6 +6,8 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"jose-elias-alvarez/null-ls.nvim",
+			"jay-babu/mason-null-ls.nvim",
 		},
 		opts = {
 			diagnostics = { -- options for vim.diagnostic.config()
@@ -18,7 +20,7 @@ return {
 			servers = {
 				"lua_ls",
 				"tsserver",
-				"eslint",
+				"pyright",
 			}, -- list of servers
 		},
 		config = function(_, opts)
@@ -62,28 +64,38 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"williamboman/mason.nvim",
-			"jay-babu/mason-null-ls.nvim",
 		},
-		opts = function()
-			local pass, null_ls = pcall(require, "null-ls")
-			if not pass then
+		config = function()
+			local pass_one, null_ls = pcall(require, "null-ls")
+			local pass_two, null_ls_utils = pcall(require, "null-ls.utils")
+			if not (pass_one and pass_two) then
 				return
 			end
 
 			local formatting = null_ls.builtins.formatting
 			local diagnostics = null_ls.builtins.diagnostics
 
-			return {
+			null_ls.setup({
+				root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
 				sources = {
 					-- Web
 					formatting.prettierd,
+					diagnostics.eslint_d.with({
+						condition = function(utils)
+							return utils.root_has_file({
+								".eslintrc.js",
+								".eslintrc.cjs",
+								".eslintrc.json",
+								".eslintrc.yaml",
+							})
+						end,
+					}),
 					-- Lua
 					formatting.stylua,
 					-- Python
-					diagnostics.flake8,
+					diagnostics.ruff,
 				},
-			}
+			})
 		end,
 	},
 
@@ -107,6 +119,9 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+		dependencies = {
+			"jose-elias-alvarez/null-ls.nvim",
+		},
 		cmd = { "NullInstall", "NullUninstall" },
 		opts = {
 			automatic_installation = true,

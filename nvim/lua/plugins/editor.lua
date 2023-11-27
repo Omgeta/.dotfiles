@@ -37,6 +37,19 @@ return {
 				end,
 			},
 		},
+		config = function(_, opts)
+			local pass, nvim_tree = pcall(require, "nvim-tree")
+			if not pass then
+				return
+			end
+
+			nvim_tree.setup(opts)
+			local function open_nvim_tree(data)
+				require("nvim-tree.api").tree.open()
+			end
+
+			vim.api.nvim_create_autocmd("VimEnter", { callback = open_nvim_tree })
+		end,
 	},
 
 	-- Fuzzy Finder
@@ -140,7 +153,7 @@ return {
 		opts = {
 			icons = {
 				breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-				separator = "  ", -- symbol used between a key and it's label
+				separator = "➜", -- symbol used between a key and it's label
 				group = "+", -- symbol prepended to a group
 			},
 			window = {
