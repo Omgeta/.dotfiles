@@ -81,8 +81,8 @@ return {
 						type = "group",
 						val = {
 							button("f", "  Find File  ", "<cmd>Telescope find_files<CR>"),
-							button("r", "  Find Recent File  ", "<cmd>Telescope oldfiles<CR>"),
-							button("g", "  Search Text  ", "<cmd>Telescope live_grep<CR>"),
+							button("r", "  Find Recent File  ", "<cmd>Telescope oldfiles<CR>"),
+							button("g", "󰀬  Search Text  ", "<cmd>Telescope live_grep<CR>"),
 							button("m", "  Bookmarks  ", "<cmd>Telescope marks<CR>"),
 							button("s", "  Settings", "<cmd>e $VIMCONFIG/init.lua | :cd %:p:h<CR>"),
 						},
@@ -176,85 +176,84 @@ return {
 		end,
 	},
 
-	-- Tabline
-	{
-		"romgrk/barbar.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		event = { "BufReadPre", "BufNewFile" },
-		keys = {
-			{ "<S-tab>", "<cmd>BufferPrev<cr>", desc = "Previous Buffer" },
-			{ "<tab>", "<cmd>BufferNext<cr>", desc = "Next Buffer" },
-			{ "<leader>b[", "<cmd>BufferPrev<cr>", desc = "Previous" },
-			{ "<leader>b]", "<cmd>BufferNext<cr>", desc = "Next" },
-			{ "<leader>b,", "<cmd>BufferMovePrev<cr>", desc = "Move Backwards" },
-			{ "<leader>b.", "<cmd>BufferMoveNext<cr>", desc = "Move Forwards" },
-			{ "<leader>b1", "<cmd>BufferGoto 1<cr>", desc = "1" },
-			{ "<leader>b2", "<cmd>BufferGoto 2<cr>", desc = "2" },
-			{ "<leader>b3", "<cmd>BufferGoto 3<cr>", desc = "3" },
-			{ "<leader>b4", "<cmd>BufferGoto 4<cr>", desc = "4" },
-			{ "<leader>b5", "<cmd>BufferGoto 5<cr>", desc = "5" },
-			{ "<leader>b6", "<cmd>BufferGoto 6<cr>", desc = "6" },
-			{ "<leader>b7", "<cmd>BufferGoto 7<cr>", desc = "7" },
-			{ "<leader>b8", "<cmd>BufferGoto 8<cr>", desc = "8" },
-			{ "<leader>b9", "<cmd>BufferGoto 9<cr>", desc = "9" },
-			{ "<leader>b$", "<cmd>BufferLast<cr>", desc = "Last" },
-			{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close" },
-		},
-		opts = {
-			icons = {
-				diagnostics = {
-					[vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostics.Error },
-					[vim.diagnostic.severity.WARN] = { enabled = true, icon = icons.diagnostics.Warn },
-					[vim.diagnostic.severity.INFO] = { enabled = false, icon = icons.diagnostics.Info },
-					[vim.diagnostic.severity.HINT] = { enabled = false, icon = icons.diagnostics.Hint },
-				},
-			},
-		},
-		config = function(_, opts)
-			local pass, barbar = pcall(require, "bufferline")
-			if not pass then
-				return
-			end
+	-- -- Tabline
+	--{
+	--"romgrk/barbar.nvim",
+	--dependencies = {
+	--	"nvim-tree/nvim-web-devicons",
+	--},
+	--event = { "BufReadPre", "BufNewFile" },
+	--keys = {
+	--	{ "<S-tab>", "<cmd>BufferPrev<cr>", desc = "Previous Buffer" },
+	--	{ "<tab>", "<cmd>BufferNext<cr>", desc = "Next Buffer" },
+	--	{ "<leader>b[", "<cmd>BufferPrev<cr>", desc = "Previous" },
+	--	{ "<leader>b]", "<cmd>BufferNext<cr>", desc = "Next" },
+	--	{ "<leader>b,", "<cmd>BufferMovePrev<cr>", desc = "Move Backwards" },
+	--	{ "<leader>b.", "<cmd>BufferMoveNext<cr>", desc = "Move Forwards" },
+	--	{ "<leader>b1", "<cmd>BufferGoto 1<cr>", desc = "1" },
+	--	{ "<leader>b2", "<cmd>BufferGoto 2<cr>", desc = "2" },
+	--	{ "<leader>b3", "<cmd>BufferGoto 3<cr>", desc = "3" },
+	--	{ "<leader>b4", "<cmd>BufferGoto 4<cr>", desc = "4" },
+	--	{ "<leader>b5", "<cmd>BufferGoto 5<cr>", desc = "5" },
+	--	{ "<leader>b6", "<cmd>BufferGoto 6<cr>", desc = "6" },
+	--	{ "<leader>b7", "<cmd>BufferGoto 7<cr>", desc = "7" },
+	--	{ "<leader>b8", "<cmd>BufferGoto 8<cr>", desc = "8" },
+	--	{ "<leader>b9", "<cmd>BufferGoto 9<cr>", desc = "9" },
+	--	{ "<leader>b$", "<cmd>BufferLast<cr>", desc = "Last" },
+	--	{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close" },
+	--},
+	--opts = {
+	--	icons = {
+	--		diagnostics = {
+	--			[vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostics.Error },
+	--			[vim.diagnostic.severity.WARN] = { enabled = true, icon = icons.diagnostics.Warn },
+	--			[vim.diagnostic.severity.INFO] = { enabled = false, icon = icons.diagnostics.Info },
+	--			[vim.diagnostic.severity.HINT] = { enabled = false, icon = icons.diagnostics.Hint },
+	--		},
+	--	},
+	--},
+	-- config = function(_, opts)
+	--	local pass, barbar = pcall(require, "bufferline")
+	--	if not pass then
+	--		return
+	--	end
 
-			-- Offset
-			local nvim_tree_events = require("nvim-tree.events")
-			local bufferline_api = require("bufferline.api")
+	--	-- Offset
+	--	local nvim_tree_events = require("nvim-tree.events")
+	--	local bufferline_api = require("bufferline.api")
 
-			local function get_tree_size()
-				return require("nvim-tree.view").View.width
-			end
+	--	local function get_tree_size()
+	--		return require("nvim-tree.view").View.width
+	--	end
 
-			nvim_tree_events.subscribe("TreeOpen", function()
-				bufferline_api.set_offset(get_tree_size() + 1)
-			end)
-
-			nvim_tree_events.subscribe("Resize", function()
-				bufferline_api.set_offset(get_tree_size() + 1)
-			end)
-
-			nvim_tree_events.subscribe("TreeClose", function()
-				bufferline_api.set_offset(0)
-			end)
-
-			barbar.setup(opts)
-		end,
-	},
+	--	nvim_tree_events.subscribe("TreeOpen", function()
+	--		bufferline_api.set_offset(get_tree_size() + 1)
+	--	end)
+	--
+	--	nvim_tree_events.subscribe("Resize", function()
+	--		bufferline_api.set_offset(get_tree_size() + 1)
+	--	end)
+	--
+	--	nvim_tree_events.subscribe("TreeClose", function()
+	--		bufferline_api.set_offset(0)
+	--	end)
+	--
+	--	barbar.setup(opts)
+	--end,
+	--},
 
 	-- Indent guides
 	{
 		"lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
+		main = "ibl",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
-      indent = {
-        char = "▏",
-      },
-      exclude = {
-        filetypes = {"help", "alpha", "NvimTree", "lazy"}
-      },
-
+			indent = {
+				char = "▏",
+			},
+			exclude = {
+				filetypes = { "help", "alpha", "NvimTree", "lazy" },
+			},
 		},
 	},
 }
