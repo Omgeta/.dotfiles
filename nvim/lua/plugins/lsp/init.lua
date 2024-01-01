@@ -60,7 +60,7 @@ return {
 
 	-- Formatters
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -68,7 +68,8 @@ return {
 		config = function()
 			local pass_one, null_ls = pcall(require, "null-ls")
 			local pass_two, null_ls_utils = pcall(require, "null-ls.utils")
-			if not (pass_one and pass_two) then
+			local pass_three, handlers = pcall(require, "plugins.lsp.handlers")
+			if not (pass_one and pass_two and pass_three) then
 				return
 			end
 
@@ -95,6 +96,7 @@ return {
 					-- Python
 					diagnostics.ruff,
 				},
+				on_attach = handlers.on_attach,
 			})
 		end,
 	},
@@ -120,7 +122,7 @@ return {
 	{
 		"jay-babu/mason-null-ls.nvim",
 		dependencies = {
-			"jose-elias-alvarez/null-ls.nvim",
+			"nvimtools/none-ls.nvim",
 		},
 		cmd = { "NullInstall", "NullUninstall" },
 		opts = {

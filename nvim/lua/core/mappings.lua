@@ -3,6 +3,10 @@ vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w!<cr>", { desc = "Save File" })
 vim.keymap.set({ "n", "v" }, "<leader>bd", "<cmd>bd<cr>", { desc = "Close" })
 vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>q!<cr>", { desc = "Exit Editor" })
 
+-- Buffer swapping
+vim.keymap.set({ "n", "v" }, "<Tab>", "<cmd>bnext<cr>")
+vim.keymap.set({ "n", "v" }, "<S-Tab>", "<cmd>bprev<cr>")
+
 -- Keep cursor in middle
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-u>", "<C-u>zz") -- Half page up

@@ -120,11 +120,9 @@ M.get_root = function()
 		path = path and vim.fs.dirname(path) or vim.loop.cwd()
 		---@type string?
 		root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
-		print(1)
 		root = root and vim.fs.dirname(root) or vim.loop.cwd()
 	end
 
-	print(2)
 	---@cast root string
 	return root
 end
