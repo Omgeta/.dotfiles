@@ -21,6 +21,7 @@ return {
 				"lua_ls",
 				"tsserver",
 				"pyright",
+				"prismals",
 			}, -- list of servers
 		},
 		config = function(_, opts)

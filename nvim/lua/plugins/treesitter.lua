@@ -17,6 +17,7 @@ return {
 				"python",
 				"lua",
 				"vim",
+				"prisma",
 			},
 
 			highlight = {
