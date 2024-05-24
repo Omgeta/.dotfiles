@@ -18,6 +18,7 @@ return {
 				"lua",
 				"vim",
 				"prisma",
+				"rust",
 			},
 
 			highlight = {

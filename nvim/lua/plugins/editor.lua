@@ -246,4 +246,18 @@ return {
 	{
 		"christoomey/vim-tmux-navigator",
 	},
+
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^4", -- Recommended
+		lazy = false, -- This plugin is already lazy
+		opts = {
+			server = {
+				on_attach = require("plugins.lsp.handlers").on_attach,
+			},
+		},
+		config = function(_, opts)
+			vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
+		end,
+	},
 }
