@@ -151,17 +151,14 @@ return {
 	{
 		"folke/which-key.nvim",
 		opts = {
-			icons = {
-				breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-				separator = "➜", -- symbol used between a key and it's label
-				group = "+", -- symbol prepended to a group
-			},
-			window = {
+			preset = "helix",
+			win = {
 				border = "rounded", -- none, single, double, shadow
-				position = "bottom", -- bottom, top
-				margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-				padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-				winblend = 0,
+				padding = { 2, 2 }, -- extra window padding [top, right, bottom, left]
+				zindex = 1000,
+				wo = {
+					winblend = 0,
+				},
 			},
 			layout = {
 				height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -169,15 +166,8 @@ return {
 				spacing = 3, -- spacing between columns
 				align = "left", -- align columns left, center or right
 			},
-			hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
 			triggers = {
-				"<leader>",
-				"<localleader>",
-			},
-			triggers_blacklist = {
-				-- list of mode / prefixes that should never be hooked by WhichKey
-				i = { "j", "k" },
-				v = { "j", "k" },
+				{ "<leader>", mode = { "n", "v" } },
 			},
 		},
 		config = function(_, opts)
@@ -189,13 +179,14 @@ return {
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 			wk.setup(opts)
-			wk.register({
-				["<leader>c"] = { name = "+Code" },
-				["<leader>f"] = { name = "+File" },
-				["<leader>g"] = { name = "+Git" },
-				["<leader>s"] = { name = "+Search" },
-				["<leader>x"] = { name = "+Diagnostics" },
-				["<leader>b"] = { name = "+Buffers" },
+			wk.add({
+				{ "<leader>", group = "Keybinds" },
+				{ "<leader>b", group = "Buffers" },
+				{ "<leader>c", group = "Code" },
+				{ "<leader>f", group = "File" },
+				{ "<leader>g", group = "Git" },
+				{ "<leader>s", group = "Search" },
+				{ "<leader>x", group = "Diagnostics" },
 			})
 		end,
 	},

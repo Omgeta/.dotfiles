@@ -38,3 +38,4 @@ dot_install zsh
 dot_install git
 dot_install tmux
 dot_install nvim
+chsh -s $(which zsh)

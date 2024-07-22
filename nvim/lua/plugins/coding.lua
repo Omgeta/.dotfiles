@@ -119,15 +119,14 @@ return {
 	-- VimTeX
 	{
 		"lervag/vimtex",
-		ft = "tex",
+		lazy = false,
 		config = function()
 			local g = vim.g
 			g.tex_flavor = "latex"
 			g.vimtex_view_method = "zathura"
-			g.vimtex_compiler_method = "latexmk"
 			g.vimtex_quickfix_mode = 0
-			g.tex_conceal = "abdmgs"
-			g.indentLine_setConceal = 0
+			g.vimtex_synctex = 1
+			g.tex_conceal = "abdmg"
 		end,
 	},
 }

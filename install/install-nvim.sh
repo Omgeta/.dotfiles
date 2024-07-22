@@ -29,5 +29,5 @@ ln -sf "$DOTFILES/nvim/lua" "$VIMCONFIG"
 rm -rf "$VIMCONFIG/UltiSnips"
 ln -sf "$DOTFILES/nvim/UltiSnips" "$VIMCONFIG"
 
-pip install neovim --quiet
-npm -g install neovim --quiet
+# pip install neovim --quiet
+# npm -g install neovim --quiet
