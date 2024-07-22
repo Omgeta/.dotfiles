@@ -1,4 +1,4 @@
-#!/usr/bi/env bash
+#!/usr/bin/env bash
 
 mkdir -p "$XDG_CONFIG_HOME/git"
 

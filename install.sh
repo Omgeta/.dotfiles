@@ -34,8 +34,8 @@ dot_install() {
 	. "$DOTFILES/install/install-${1}.sh"
 }
 
+dot_install essentials
 dot_install zsh
 dot_install git
 dot_install tmux
 dot_install nvim
-chsh -s $(which zsh)
