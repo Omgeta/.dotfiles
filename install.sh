@@ -30,7 +30,7 @@ fi
 # Install
 ##
 dot_install() {
-	echo -e "${blue}-> Installing ${yellow}${1} ${blue}config"
+	echo -e "${blue}-> Installing ${yellow}${1} ${blue}config${white}"
 	. "$DOTFILES/install/install-${1}.sh"
 }
 

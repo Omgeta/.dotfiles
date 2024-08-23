@@ -120,13 +120,27 @@ return {
 	{
 		"lervag/vimtex",
 		lazy = false,
+		keys = {
+			{ "<leader>lo", "<cmd>VimtexCompileOutput<cr>", desc = "Vimtex Compile" },
+			{ "<leader>lc", "<cmd>VimtexStop<cr><cmd>VimtexClean<cr>", desc = "Vimtex Clean" },
+		},
 		config = function()
+			local pass, wk = pcall(require, "which-key")
+			if pass then
+				wk.add({
+					{ "<leader>l", group = "Latex" },
+				})
+			end
+
 			local g = vim.g
+			local o = vim.o
 			g.tex_flavor = "latex"
 			g.vimtex_view_method = "zathura"
 			g.vimtex_quickfix_mode = 0
 			g.vimtex_synctex = 1
 			g.tex_conceal = "abdmg"
+			o.conceallevel = 2
+			o.concealcursor = "nc"
 		end,
 	},
 }

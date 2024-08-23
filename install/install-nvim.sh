@@ -32,4 +32,4 @@ ln -sf "$DOTFILES/nvim/UltiSnips" "$VIMCONFIG"
 # install neovim
 sudo apt install -y neovim
 pip install neovim --break-system-packages --quiet
-npm -g install neovim --quiet
+sudo npm -g install neovim --quiet

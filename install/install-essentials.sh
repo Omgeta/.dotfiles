@@ -9,3 +9,6 @@ sudo apt install -y npm
 sudo apt install -y latexmk
 sudo apt install -y zathura
 sudo apt install -y texlive-full
+
+# Misc
+sudo apt install -y ripgrep

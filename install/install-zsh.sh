@@ -2,7 +2,7 @@
 
 mkdir -p "$ZDOTDIR"
 
-sudo install zsh
+sudo apt install zsh
 
 ln -sf "$DOTFILES/zsh/zshenv" "$HOME/.zshenv"
 ln -sf "$DOTFILES/zsh/zshrc" "$ZDOTDIR/.zshrc"
