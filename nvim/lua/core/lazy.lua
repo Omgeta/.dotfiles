@@ -27,14 +27,3 @@ require("lazy").setup({
 	-- automatically check for plugin updates
 	checker = { enabled = true, notify = false },
 })
-
--- Auto-update function
-local function auto_update()
-	local lazy = require("lazy")
-	lazy.update()
-end
-
--- Run auto-update on Neovim start
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = auto_update,
-})

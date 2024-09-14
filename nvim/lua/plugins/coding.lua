@@ -121,8 +121,13 @@ return {
 		"lervag/vimtex",
 		lazy = false,
 		keys = {
-			{ "<leader>lo", "<cmd>VimtexCompileOutput<cr>", desc = "Vimtex Compile" },
-			{ "<leader>lc", "<cmd>VimtexStop<cr><cmd>VimtexClean<cr>", desc = "Vimtex Clean" },
+			{ "<leader>lo", "<cmd>VimtexCompile<cr>", desc = "Vimtex Compile" },
+			{
+				"<leader>lc",
+				"<cmd>VimtexStop<cr><cmd>VimtexClean<cr><cmd>!rm *.synctex.gz > /dev/null<cr>",
+				desc = "Vimtex Clean",
+			},
+			{ "<leader>le", "<cmd>VimtexErrors<cr>", desc = "Vimtex Errors" },
 		},
 		config = function()
 			local pass, wk = pcall(require, "which-key")
