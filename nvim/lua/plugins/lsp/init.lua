@@ -19,7 +19,7 @@ return {
 			autoformat = true, -- format on save
 			servers = {
 				"lua_ls",
-				"tsserver",
+				"ts_ls",
 				"pyright",
 				"prismals",
 			}, -- list of servers

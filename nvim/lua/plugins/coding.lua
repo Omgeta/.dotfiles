@@ -124,7 +124,7 @@ return {
 			{ "<leader>lo", "<cmd>VimtexCompile<cr>", desc = "Vimtex Compile" },
 			{
 				"<leader>lc",
-				"<cmd>VimtexStop<cr><cmd>VimtexClean<cr><cmd>!rm *.synctex.gz > /dev/null<cr>",
+				"<cmd>VimtexStop<cr><cmd>!rm *.synctex.gz<cr><cmd>VimtexClean<cr>",
 				desc = "Vimtex Clean",
 			},
 			{ "<leader>le", "<cmd>VimtexErrors<cr>", desc = "Vimtex Errors" },
