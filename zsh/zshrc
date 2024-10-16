@@ -28,6 +28,7 @@ alias cls="clear"
 alias vim="nvim"
 alias vi="nvim"
 alias py="python3"
+alias javac="javac -Xlint:unchecked -Xlint:rawtypes"
 alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 
 ##       ##
