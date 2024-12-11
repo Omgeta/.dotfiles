@@ -1,0 +1,2 @@
+export PATH=$CARGO_HOME/bin:$PATH
+export PATH=$HOME/.foreman/bin:$PATH
