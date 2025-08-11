@@ -3,3 +3,5 @@
 	email = anooptiger@hotmail.com
 [init]
 	defaultBranch = master
+[push]
+	autoSetupRemote = true

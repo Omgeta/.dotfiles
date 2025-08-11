@@ -131,4 +131,19 @@ return {
       automatic_installation = true,
     },
   },
+
+  -- Lua
+  {
+    "lopi-py/luau-lsp.nvim",
+    ft = "luau",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = function()
+      local handlers = require "plugins.lsp.handlers"
+      return {
+        server = { capabilities = handlers.capabilities },
+      }
+    end,
+  },
 }
