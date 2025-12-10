@@ -4,9 +4,9 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
+      "nvimtools/none-ls.nvim",
       "jay-babu/mason-null-ls.nvim",
     },
     opts = {
@@ -22,12 +22,13 @@ return {
         "ts_ls",
         "pyright",
         "prismals",
+        "eslint",
+        "gopls",
       }, -- list of servers
     },
     config = function(_, opts)
-      local pass_one, lspconfig = pcall(require, "lspconfig")
       local pass_two, handlers = pcall(require, "plugins.lsp.handlers")
-      if not (pass_one and pass_two) then
+      if not pass_two then
         return
       end
 
@@ -54,7 +55,8 @@ return {
           server_opts = vim.tbl_deep_extend("force", server_opts, custom_opts)
         end
 
-        lspconfig[server].setup(server_opts)
+        vim.lsp.config(server, server_opts)
+        vim.lsp.enable(server)
       end
     end,
   },
@@ -82,21 +84,12 @@ return {
         sources = {
           -- Web
           formatting.prettierd,
-          diagnostics.eslint_d.with {
-            condition = function(utils)
-              return utils.root_has_file {
-                ".eslintrc.js",
-                ".eslintrc.cjs",
-                ".eslintrc.json",
-                ".eslintrc.yaml",
-              }
-            end,
-          },
           -- Lua
           formatting.stylua,
           diagnostics.selene,
-          -- Python
-          diagnostics.ruff,
+          -- Go
+          formatting.gofmt,
+          formatting.goimports,
         },
         on_attach = handlers.on_attach,
       }
@@ -105,7 +98,7 @@ return {
 
   -- Install
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     cmd = "Mason",
     keys = {
       { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
@@ -115,7 +108,7 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
     opts = {
       automatic_installation = true,
@@ -125,6 +118,7 @@ return {
     "jay-babu/mason-null-ls.nvim",
     dependencies = {
       "nvimtools/none-ls.nvim",
+      "mason-org/mason.nvim",
     },
     cmd = { "NullInstall", "NullUninstall" },
     opts = {
