@@ -36,11 +36,17 @@ return {
       handlers.autoformat = opts.autoformat
 
       -- Diagnostics
-      for name, icon in pairs(require("core.utils").icons.diagnostics) do
-        name = "DiagnosticSign" .. name
-        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-      end
-      vim.diagnostic.config(opts.diagnostics)
+      local icons = require("core.utils").icons.diagnostics
+      vim.diagnostic.config(vim.tbl_deep_extend("force", opts.diagnostics or {}, {
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.Error,
+            [vim.diagnostic.severity.WARN] = icons.Warn,
+            [vim.diagnostic.severity.INFO] = icons.Info,
+            [vim.diagnostic.severity.HINT] = icons.Hint,
+          },
+        },
+      }))
 
       -- Setup LSP servers
       for _, server in pairs(opts.servers) do
@@ -88,7 +94,7 @@ return {
           formatting.stylua,
           diagnostics.selene,
           -- Go
-          formatting.gofmt,
+          formatting.gofumpt,
           formatting.goimports,
         },
         on_attach = handlers.on_attach,
