@@ -51,3 +51,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 [ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 . "$HOME/.aftman/env"
+
+# NVM
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -45,6 +45,7 @@ setopt SHARE_HISTORY		# Share history between sessions
 setopt HIST_IGNORE_DUPS		# Do not record events in succession if they are the same
 setopt HIST_IGNORE_SPACE	# Do not record events if they start with a space
 setopt INC_APPEND_HISTORY	# Append history lists to the history file instead of replacing 
+setopt INTERACTIVE_COMMENTS
 
 ##          ##
 # Completion #
@@ -81,3 +82,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
