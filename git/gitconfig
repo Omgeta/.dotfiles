@@ -6,4 +6,4 @@
 [push]
 	autoSetupRemote = true
 [core]
-	autocrlf = true
+	autocrlf = input

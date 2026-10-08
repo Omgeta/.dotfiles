@@ -12,7 +12,7 @@ source "$DOTFILES/install/install-essentials.sh"
 source "$DOTFILES/install/common.sh"
 link_config /usr/bin/fdfind "$HOME/.local/bin/fd"
 bash "$DOTFILES/install/bootstrap-neovim.sh"
-git -C "$DOTFILES" submodule update --init --recursive
+git -c core.autocrlf=input -C "$DOTFILES" submodule update --init --recursive
 
 tpm_dir="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins/tpm"
 if [[ ! -d "$tpm_dir" ]]; then
