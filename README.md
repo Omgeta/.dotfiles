@@ -19,22 +19,36 @@ directory, preserves existing files and directories as adjacent
 `*.backup-<timestamp>-<pid>` backups, and leaves correct links alone on subsequent
 runs. Use `./install.sh -y` to skip confirmation.
 
-Config linking does not install packages, download plugins, or change your login
-shell. To also install the Ubuntu packages and clone the Tmux plugin manager:
+`install.sh` only links configs, with backups. For a fresh machine or the
+Neovim upgrade, run:
 
 ```sh
-./bootstrap.sh
+~/.dotfiles/bootstrap.sh
+exec zsh
+nvim --version
 ```
 
-The bootstrap script requires `sudo`, APT, Git, and network access. Set your login shell
-separately with `chsh -s "$(command -v zsh)"` if desired. Inside Tmux, press
-`Ctrl-a` followed by `Shift-I` to install plugins. Neovim downloads its plugins
-on first launch; use a version that supports `vim.lsp.config` and `vim.lsp.enable`
-(Neovim 0.11 or newer). Ubuntu's packaged version may be older.
+Bootstrap installs Ubuntu packages (including the Python Neovim provider),
+Neovim 0.12.5 from the official Linux archive, the recorded Zsh submodules,
+the Tmux plugin manager, and your config links. It requires `sudo`, APT, and
+network access. Run it as your normal user, without `sudo` in front of the script.
+Both scripts work from any directory and can be run again.
+
+Neovim releases live under `$XDG_DATA_HOME/nvim/releases` (default
+`~/.local/share/nvim/releases`). The installer validates the downloaded executable
+before switching `~/.local/bin/nvim`; existing releases and system installations
+are preserved. Zsh places `~/.local/bin` first on PATH. In Bash, run
+`export PATH="$HOME/.local/bin:$PATH"` and `hash -r` to use this installation.
+For future upgrades, change `version` in `install/bootstrap-neovim.sh` and rerun
+bootstrap. The version is pinned so repeat runs use the same release.
+
+Inside Neovim, run `:Lazy sync`, `:TSUpdate`, and `:checkhealth` after upgrading.
+Missing plugins install on first launch; existing plugins update with `:Lazy sync`.
+Treesitter stays on its compatible `master` branch until its configuration is
+migrated to the new API. Inside Tmux, press `Ctrl-a` then `Shift-I` to install
+plugins. Set your login shell separately with `chsh -s "$(command -v zsh)"`.
 
 For LaTeX support, install `latexmk`, `zathura`, and the TeX Live packages you need.
-UltiSnips also needs the Python Neovim provider (`pynvim`) in the Python environment
-used by Neovim.
 
 ## Layout
 
