@@ -1,3 +1,4 @@
+--!strict
 -- Shortcuts
 local g = vim.g
 local opt = vim.opt
@@ -68,7 +69,11 @@ opt.signcolumn = "yes"
 opt.isfname:append "@-@"
 
 -- Providers
-g.python3_host_prog = "/usr/bin/python3"
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
+local python_host = vim.fn.stdpath "data" .. "/python/bin/python"
+g.python3_host_prog = vim.fn.executable(python_host) == 1 and python_host or "/usr/bin/python3"
 
 -- Win32Yank
 g.clipboard = {

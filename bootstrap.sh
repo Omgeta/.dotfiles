@@ -9,6 +9,8 @@ case "$*" in
 esac
 
 source "$DOTFILES/install/install-essentials.sh"
+source "$DOTFILES/install/common.sh"
+link_config /usr/bin/fdfind "$HOME/.local/bin/fd"
 bash "$DOTFILES/install/bootstrap-neovim.sh"
 git -C "$DOTFILES" submodule update --init --recursive
 

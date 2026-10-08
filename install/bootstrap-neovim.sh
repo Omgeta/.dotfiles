@@ -29,3 +29,11 @@ output="$("$release_dir/bin/nvim" --version)"
 source "$(dirname -- "${BASH_SOURCE[0]}")/common.sh"
 link_config "$release_dir/bin/nvim" "$HOME/.local/bin/nvim"
 printf 'Neovim %s installed in %s\n' "$version" "$release_dir"
+
+# Keep the Python provider independent of Conda and project virtual environments.
+provider_dir="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/python"
+if [[ ! -x "$provider_dir/bin/python" ]]; then
+  /usr/bin/python3 -m venv "$provider_dir"
+fi
+"$provider_dir/bin/python" -m pip install --upgrade pynvim
+"$provider_dir/bin/python" -c 'import pynvim; print("Python provider ready")'

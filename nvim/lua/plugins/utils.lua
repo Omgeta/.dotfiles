@@ -1,12 +1,15 @@
+--!strict
 return {
-	-- Common functions
-	{ "nvim-lua/plenary.nvim", lazy = true },
+  -- Common functions
+  { "nvim-lua/plenary.nvim", lazy = true },
 
-	-- Colorizer
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
+  -- Colorizer
+  {
+    "catgoose/nvim-colorizer.lua",
+    name = "colorizer", -- keep the new checkout separate from the old plugin
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
 }

@@ -28,7 +28,7 @@ exec zsh
 nvim --version
 ```
 
-Bootstrap installs Ubuntu packages (including the Python Neovim provider),
+Bootstrap installs Ubuntu packages (including fd and Python virtualenv support),
 Neovim 0.12.5 from the official Linux archive, the recorded Zsh submodules,
 the Tmux plugin manager, and your config links. It requires `sudo`, APT, and
 network access. Run it as your normal user, without `sudo` in front of the script.
@@ -66,3 +66,10 @@ applications that need Node on their inherited PATH. Conda initializes on the
 first `conda` command; activate environments explicitly with `conda activate`.
 Set `CONDA_HOME` if Anaconda is installed outside `/opt/anaconda3`.
 The WSL runtime fallback preserves an existing private session directory.
+
+The Python provider is upgraded in an isolated environment at
+`$XDG_DATA_HOME/nvim/python` by bootstrap. Neovim uses that interpreter for
+UltiSnips, independently of Conda or project environments. Unused Node, Perl,
+and Ruby remote-plugin providers and Lazy's LuaRocks support are disabled.
+Ubuntu's `fdfind` is linked as `~/.local/bin/fd` for Telescope. Color highlighting
+uses `catgoose/nvim-colorizer.lua`; run `:Lazy sync` after updating the config.
