@@ -5,7 +5,7 @@
 ##                     ##
 
 export TERM="xterm-256color"
-export DOTFILES="$HOME/.dotfiles"
+export DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US:en
 export LC_ALL=en_US.UTF-8
@@ -13,9 +13,9 @@ export LC_CTYPE=en_US.UTF-8
 export BROWSER="/usr/bin/wslview"
 
 # XDG
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 # Editor
 export EDITOR="nvim"
@@ -25,14 +25,14 @@ export READER="zathura"
 export SHELL="/usr/bin/zsh"
 
 # Zsh
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
 export HISTFILE="$ZDOTDIR/.zhistory"
 export HISTSIZE=1000
 export SAVEHIST=$HISTSIZE
 [ -f "$DOTFILES/lscolors.sh" ] && source "$DOTFILES/lscolors.sh" # export LS_COLORS
 
 # Others
-export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+export VIMCONFIG="${VIMCONFIG:-$XDG_CONFIG_HOME/nvim}"
 
 # Man pages
 export MANPAGER="nvim +Man!"
@@ -48,11 +48,13 @@ export GOCACHE="$XDG_CACHE_HOME/go-build"
 
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-[ -f "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-. "$HOME/.aftman/env"
 
 # NVM
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="${NVM_DIR:-$XDG_CONFIG_HOME/nvm}"
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+
+# Keep optional integrations from setting the status of shell startup.
+true

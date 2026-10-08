@@ -1,26 +1,25 @@
-local ok, util = pcall(require, "lspconfig.util")
-if not ok then
-  return {}
-end
-
 return {
-  settings = {
-    root_dir = util.root_pattern(
+  root_markers = {
+    {
+      "eslint.config.js",
+      "eslint.config.cjs",
+      "eslint.config.mjs",
       ".eslintrc.js",
       ".eslintrc.cjs",
       ".eslintrc.json",
       ".eslintrc.yaml",
       ".eslintrc.yml",
       ".eslintrc",
+    },
+    {
+      "package.json",
+      ".git",
+    },
+  },
 
-      -- flat config
-      "eslint.config.js",
-      "eslint.config.cjs",
-      "eslint.config.mjs"
-    ),
+  settings = {
     validate = "on",
     packageManager = "npm",
-    workingDirectories = { mode = "auto" },
     format = false,
   },
 }

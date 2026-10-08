@@ -1,4 +1,4 @@
-#!/usr/binenv bash
+#!/usr/bin/env bash
 
 default="\033[39m"
 black="\033[30m"

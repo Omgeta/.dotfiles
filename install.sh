@@ -1,41 +1,24 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-##
-# Include
-##
+DOTFILES="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
+VIMCONFIG="${VIMCONFIG:-$XDG_CONFIG_HOME/nvim}"
 
-source ./colors.sh
-source ./zsh/zshenv
+case "$*" in
+  -y|--yes) ;;
+  -h|--help) echo "Usage: $0 [-y|--yes]"; exit 0 ;;
+  "")
+    read -r -p 'Install dotfiles and back up existing configs? [y/N] ' answer || exit 0
+    [[ "$answer" == [yY] || "$answer" == [yY][eE][sS] ]] || exit 0
+    ;;
+  *) echo "Usage: $0 [-y|--yes]" >&2; exit 2 ;;
+esac
 
-##
-# Screen
-##
-
-echo -e "
-${magenta}-----------------------------
-${red}Welcome to Omgeta's dotfiles
-${magenta}-----------------------------"
-echo -e "${red}!WARNING! ${yellow}Your existing config files will be overwritten ${red}!WARNING!"
-
-
-if [ $# -ne 1 ] || [ "$1" != "-y" ] 
-then
-        echo -e "${yellow}Press a key to continue...\n"
-        read key
-else
-	exit 1
-fi
-
-##
-# Install
-##
-dot_install() {
-	echo -e "${blue}-> Installing ${yellow}${1} ${blue}config${white}"
-	. "$DOTFILES/install/install-${1}.sh"
-}
-
-dot_install essentials
-dot_install zsh
-dot_install git
-dot_install tmux
-dot_install nvim
+source "$DOTFILES/install/common.sh"
+for component in zsh git tmux nvim; do
+  echo "Installing $component config"
+  source "$DOTFILES/install/install-$component.sh"
+done
+echo 'Dotfiles installed. Start a new shell to load them.'

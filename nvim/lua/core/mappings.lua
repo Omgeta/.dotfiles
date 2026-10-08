@@ -11,8 +11,8 @@ vim.keymap.set({ "n", "v" }, "<S-Tab>", "<cmd>bprev<cr>")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-u>", "<C-u>zz") -- Half page up
 vim.keymap.set("n", "<C-d>", "<C-d>zz") -- Half page down
-vim.keymap.set("n", "n", "<C-d>zz")
-vim.keymap.set("n", "N", "<C-d>zz")
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
 
 -- Move highlighted text
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

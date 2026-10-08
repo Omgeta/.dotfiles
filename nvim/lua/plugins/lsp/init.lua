@@ -24,6 +24,7 @@ return {
         "prismals",
         "eslint",
         "gopls",
+        "svelte",
       }, -- list of servers
     },
     config = function(_, opts)
@@ -64,6 +65,11 @@ return {
         vim.lsp.config(server, server_opts)
         vim.lsp.enable(server)
       end
+
+      require("mason-lspconfig").setup {
+        ensure_installed = opts.servers,
+        automatic_enable = opts.servers, -- also enable servers when installation finishes
+      }
     end,
   },
 
@@ -116,9 +122,7 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     cmd = { "LspInstall", "LspUninstall" },
-    opts = {
-      automatic_installation = true,
-    },
+    -- Configured alongside the server list in nvim-lspconfig.
   },
   {
     "jay-babu/mason-null-ls.nvim",

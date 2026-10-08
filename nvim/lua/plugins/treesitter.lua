@@ -2,6 +2,7 @@ return {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master", -- compatible with the configs API and Neovim 0.11
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
@@ -20,6 +21,7 @@ return {
         "vim",
         "prisma",
         "rust",
+        "svelte",
       },
 
       highlight = {

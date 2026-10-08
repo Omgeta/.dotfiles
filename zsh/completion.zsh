@@ -3,8 +3,9 @@
 ##       ##
 
 # Load more completions
-if [ -f $DOTFILES/zsh/plugins/zsh-completions/src ]; then
-	fpath=($DOTFILES/zsh/plugins/zsh-completions/src $fpath)
+if [ -d "$DOTFILES/zsh/plugins/zsh-completions/src" ]; then
+	typeset -U fpath
+	fpath=("$DOTFILES/zsh/plugins/zsh-completions/src" $fpath)
 fi
 
 # Needs to be called before compinit
@@ -23,7 +24,9 @@ bindkey -M menuselect '^xh' accept-and-hold                # Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
 bindkey -M menuselect '^xu' undo                           # Undo
 
-autoload -U compinit; compinit
+mkdir -p "$XDG_CACHE_HOME/zsh"
+autoload -U compinit
+compinit -d "$XDG_CACHE_HOME/zsh/.zcompdump"
 _comp_options+=(globdots) # With hidden files
 
 # Only work with the Zsh function vman

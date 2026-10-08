@@ -1,6 +1,7 @@
 # Global gitignore
 
 # Files
+AGENTS.md
 *.gz
 *.7z
 .env
