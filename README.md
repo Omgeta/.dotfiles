@@ -60,10 +60,9 @@ For LaTeX support, install `latexmk`, `zathura`, and the TeX Live packages you n
 The installer respects `XDG_CONFIG_HOME`, `ZDOTDIR`, and `VIMCONFIG`.
 Zsh also respects `XDG_DATA_HOME` and `XDG_CACHE_HOME`. Zsh defaults `DOTFILES` to `$HOME/.dotfiles`; export
 `DOTFILES` before starting Zsh if you keep the checkout elsewhere. Optional
-language managers are loaded only when installed. NVM initializes on the first
-`nvm`, `node`, `npm`, or `npx` command; run `nvm use default` before launching
-applications that need Node on their inherited PATH. Conda initializes on the
-first `conda` command; activate environments explicitly with `conda activate`.
+language managers are loaded only when installed. NVM initializes at shell
+startup so the default Node version and npm-installed commands are on PATH.
+Conda initializes on the first `conda` command; activate environments explicitly with `conda activate`.
 Set `CONDA_HOME` if Anaconda is installed outside `/opt/anaconda3`.
 The WSL runtime fallback preserves an existing private session directory.
 
